@@ -1,0 +1,60 @@
+  {% extends "layout.html" %}
+  {% block title %}Haj{% endblock %}
+  {% block content %}
+    <div class="container mt-3">
+        <h2>Skriv in regionen samt datumet för elpriset</h2>
+        <form action="/api" method="post">
+        <div class="mb-3">
+        <label for="prisklass" class="form-label">Välj region</label>
+        <select class="form-select" id="prisklass" name="prisklass">
+            <option value="SE1">SE1  Luleå / Norra Sverige</option>
+            <option value="SE2">SE2  Sundsvall / Norra Mellansverige</option>
+            <option value="SE3">SE3  Stockholm / Södra Mellansverige</option>
+            <option value="SE4">SE4  Malmö / Södra Sverige</option>
+        </select>
+    </div>
+        <div class="mb-3">
+            <label for="år" class="form-label">Välj år</label>
+            <select class="form-select" id="år" name="år">
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+            
+
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="månad" class="form-label">Välj månad mellan 1/12</label>
+            <select class="form-select" id="månad" name="månad">
+            <option value="01">1</option>
+            <option value="02">2</option>
+            <option value="03">3</option>
+            <option value="04">4</option>
+            <option value="05">5</option>
+            <option value="06">6</option>
+            <option value="07">7</option>
+            <option value="08">8</option>
+            <option value="09">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+
+            </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="dag" class="form-label">Skriv in en dag mellan 1-31</label>
+          <input type="text" class="form-control" id="dag" name="dag">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Skicka</button>
+      </form>
+    </div>
+    {% if e %}
+      {{ e }}
+    {% endif %}
+  {% endblock %}

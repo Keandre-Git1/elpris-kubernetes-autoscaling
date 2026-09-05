@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}Elpriser{% endblock %}
+
+{% block content %}
+  <div class="d-flex justify-content-end mt-3">
+
+  <form action="/graf" method="get" target="_blank">
+    <input type="hidden" name="år" value="{{ år }}">
+    <input type="hidden" name="månad" value="{{ månad }}">
+    <input type="hidden" name="dag" value="{{ dag }}">
+    <input type="hidden" name="prisklass" value="{{ prisklass }}">
+    <button type="submit" class="btn btn-primary">Visa graf i ny flik</button>
+  </form>
+  </div>
+  <div class="container">
+    <h2>Elpriset för {{ dag }}-{{ månad }}-{{ år }}</h2>
+
+    <table class="table">
+      <thead>
+        <tr>
+          {% for col in df.columns %}
+            <th>{{ col }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in df.values %}
+          <tr>
+            {% for cell in row %}
+              <td>{{ cell }}</td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  </div>
+{% endblock %}
