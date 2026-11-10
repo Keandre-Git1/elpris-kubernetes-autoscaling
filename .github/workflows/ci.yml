@@ -33,7 +33,7 @@ jobs:
 
   docker:
     name: Bygg och testa Docker-imagen
-    needs: test
+    needs: test-and-lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
