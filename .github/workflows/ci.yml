@@ -31,3 +31,26 @@ jobs:
       - name: Run tests
         run: python -m pytest -v
 
+  docker:
+    name: Bygg och testa Docker-imagen
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Bygg imagen
+        run: docker build -t elpris:${{ github.sha}} .
+      
+      - name: Starta containern och kontrollera /health
+        run:  |
+          docker run -d --name elpris -p 2800:2800 elpris:${{ github.sha }}
+          for i in $(seq 1 15); do
+            if curl -fsS http://localhost:2800/health; then
+              echo "appen svarar"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "Appen svarade inte på /health"
+          docker logs elpris
+          exit 1
