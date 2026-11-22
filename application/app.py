@@ -46,7 +46,7 @@ def _hamta_priser(år: int, månad: int, dag: int, prisklass: str) -> pd.DataFra
 def _validera_datum(år: int, månad: int, dag: int) -> str | None:
     """Returnerar felmeddelande (str) om datumet är ogiltigt, annars None."""
     raw_date = datetime.date(år, månad, dag)
-    max_date = (datetime.datetime.today() + datetime.timedelta(days=1)).date()
+    max_date = (datetime.datetime.now(datetime.UTC) + datetime.timedelta(days=1)).date()
     if raw_date < MIN_DATE or max_date < raw_date:
         return "Datumet får endast vara mellan den 1 november 2022 till en dag efter idag."
     return None
