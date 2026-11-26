@@ -1,4 +1,4 @@
-# Elpris-appen
+# Elpris-appen (Demo)
 
 ## Om projektet
 
