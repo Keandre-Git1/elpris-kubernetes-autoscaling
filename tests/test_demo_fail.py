@@ -1,2 +1,2 @@
-def test_demo_fel:
+def test_demo_fel():
 	assert 1 + 1 == 0
